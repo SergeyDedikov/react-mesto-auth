@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { CurentUserContext, defaultUser } from "../contexts/CurrentUserContext";
 
 import "../index.css";
@@ -11,8 +12,13 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ConfirmationPopup from "./ConfirmationPopup";
+import ProtectedRoute from "./ProtectedRoute";
+import Login from "./Login";
+import Register from "./Register";
 
 function App() {
+  // -- Переменная состояния авторизации
+  const [loggedIn, setLoggedIn] = useState(false);
   // -- Переменная состояния профиля
   const [currentUser, setCurrentUser] = useState(defaultUser);
 
@@ -164,15 +170,31 @@ function App() {
   return (
     <CurentUserContext.Provider value={currentUser}>
       <Header />
-      <Main
-        onEditAvatar={handleEditAvatarClick}
-        onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}
-        cards={cards}
-        onCardClick={handleCardClick}
-        onCardLike={handleCardLike}
-        onCardDelete={handleCardDelete}
-      />
+      <Switch>
+        <ProtectedRoute
+          exact path="/"
+          loggedIn={loggedIn}
+          component={Main}
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          cards={cards}
+          onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
+        />
+        <Route path="/sign-up">
+          <Register />
+        </Route>
+        <Route path="/sign-in">
+          <Login />
+        </Route>
+
+        {/* <Route exact path="/">
+          {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+        </Route> */}
+      </Switch>
+
       <Footer />
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
