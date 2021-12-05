@@ -30,15 +30,19 @@
 
 @import url(./blocks/form/form.css);
 @import url(./blocks/form/__heading/form__heading.css);
+@import url(./blocks/form/__heading/_type/form__heading_type_authentication.css);
 @import url(./blocks/form/__input-container/form__input-container.css);
 @import url(./blocks/form/__field/form__field.css);
 @import url(./blocks/form/__input/form__input.css);
 @import url(./blocks/form/__input/_type/form__input_type_error.css);
+@import url(./blocks/form/__input/_theme/form__input_theme_dark.css);
 @import url(./blocks/form/__error/form__error.css);
 @import url(./blocks/form/__error/_visible/form__error_visible.css);
 @import url(./blocks/form/__button/form__button.css);
 @import url(./blocks/form/__button/_confirmation/form__button_confirmation.css);
+@import url(./blocks/form/__button/_authentication/form__button_authentication.css);
 @import url(./blocks/form/__button/_disabled/form__button_disabled.css);
+@import url(./blocks/form/__button/_theme/form__button_theme_dark.css);
 
 @import url(./blocks/cards/cards.css);
 @import url(./blocks/cards/__list/cards__list.css);
@@ -52,6 +56,9 @@
 @import url(./blocks/card/__button-like/_active/card__button-like_active.css);
 @import url(./blocks/card/__button-remove/card__button-remove.css);
 @import url(./blocks/card/__button-remove/_hidden/card__button-remove_hidden.css);
+
+@import url(./blocks/authentication/authentication.css);
+@import url(./blocks/authentication/__question/authentication__question.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);
