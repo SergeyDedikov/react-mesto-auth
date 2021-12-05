@@ -18,7 +18,7 @@ import Register from "./Register";
 
 function App() {
   // -- Переменная состояния авторизации
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   // -- Переменная состояния профиля
   const [currentUser, setCurrentUser] = useState(defaultUser);
 

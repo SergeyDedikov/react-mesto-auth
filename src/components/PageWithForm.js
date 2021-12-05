@@ -1,7 +1,7 @@
 import { FormValidator, validConfig } from "../utils/formValidator";
 import { useEffect, useState } from "react";
 
-function PopupWithForm(props) {
+function PageWithForm(props) {
   // -- Создаём экземпляры валидаторов форм
   const [validator, setValidator] = useState(null);
 
@@ -11,18 +11,16 @@ function PopupWithForm(props) {
     setValidator(formValidator);
   }, [props.name]);
 
-  // -- Сброс валидации при открытии попапа
   useEffect(() => {
-    if (props.isOpen && validator) {
+    if (validator) {
       validator.resetValidation();
     }
-  }, [props.isOpen, validator]);
+  }, [validator]);
 
-  return ( // -- переименовать классы формы в form !!!
+  return (
     <div
       className={`
-        popup popup_type_${props.name}
-        ${props.isOpen ? "popup_opened" : ""}
+        popup popup_type_${props.name} popup_opened
       `}
     >
       <div className={`popup__container popup__container_type_${props.name}`}>
@@ -40,16 +38,10 @@ function PopupWithForm(props) {
           >
             {props.textButtonSubmit}
           </button>
-
         </form>
-        <button
-            onClick={props.onClose}
-            className="popup__close button"
-            type="button"
-          ></button>
       </div>
     </div>
   );
 }
 
-export default PopupWithForm;
+export default PageWithForm;
