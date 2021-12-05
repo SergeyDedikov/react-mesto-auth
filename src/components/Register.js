@@ -1,13 +1,19 @@
 import PageWithAuthForm from "./PageWithAuthForm";
+import api from "../utils/api";
 
-function Register(props) {
-  function handleSubmit(e) {
-    e.preventDefault();
+function Register() {
+  function onRegister(data) {
+    api.register(data).then((res) => {
+      console.log(res);
+      // -- если ОК показать попап Хорошо
+      // -- иначе Плохо
+      // 400 - некорректно заполнено одно из полей
+    })
   }
 
   return (
     <PageWithAuthForm
-      onSubmit={handleSubmit}
+      onSubmit={onRegister}
       name={"register"}
       title={"Регистрация"}
       textButtonSubmit={"Зарегистрироваться"}

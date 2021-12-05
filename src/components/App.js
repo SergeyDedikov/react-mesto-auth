@@ -19,6 +19,13 @@ import Register from "./Register";
 function App() {
   // -- Переменная состояния авторизации
   const [loggedIn, setLoggedIn] = useState(true);
+  console.log(loggedIn);
+  useEffect(() => {
+    api.checkToken(localStorage.getItem("token")).then((res) => {
+      console.log(res);
+      setLoggedIn(true);
+    });
+  }, []);
   // -- Переменная состояния профиля
   const [currentUser, setCurrentUser] = useState(defaultUser);
 
@@ -172,7 +179,8 @@ function App() {
       <Header />
       <Switch>
         <ProtectedRoute
-          exact path="/"
+          exact
+          path="/"
           loggedIn={loggedIn}
           component={Main}
           onEditAvatar={handleEditAvatarClick}
