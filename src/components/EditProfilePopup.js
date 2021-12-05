@@ -44,36 +44,36 @@ function EditProfilePopup(props) {
       textButtonSubmit={props.isLoading ? "Сохранение..." : "Сохранить"}
       onSubmit={handleSubmit}
     >
-      <fieldset className="popup__input-container">
-        <label className="popup__field">
+      <fieldset className="form__input-container">
+        <label className="form__field">
           <input
             value={name}
             onChange={handleChangeName}
             id="name"
             placeholder="Введите имя"
-            className="popup__input popup__input_value_name"
+            className="form__input"
             type="text"
             name="name"
             required
             minLength="2"
             maxLength="40"
           />
-          <span id="name-error" className="popup__error"></span>
+          <span id="name-error" className="form__error"></span>
         </label>
-        <label className="popup__field">
+        <label className="form__field">
           <input
             value={description}
             onChange={handleChangeDescription}
             id="job"
             placeholder="Расскажите немного о себе"
-            className="popup__input popup__input_value_job"
+            className="form__input"
             type="text"
             name="job"
             required
             minLength="2"
             maxLength="200"
           />
-          <span id="job-error" className="popup__error"></span>
+          <span id="job-error" className="form__error"></span>
         </label>
       </fieldset>
     </PopupWithForm>

@@ -18,7 +18,7 @@ function PopupWithForm(props) {
     }
   }, [props.isOpen, validator]);
 
-  return ( // -- переименовать классы формы в form !!!
+  return (
     <div
       className={`
         popup popup_type_${props.name}
@@ -29,24 +29,23 @@ function PopupWithForm(props) {
         <form
           onSubmit={props.onSubmit}
           name={`${props.name}`}
-          className={`popup__form popup__form_${props.name}`}
+          className={`form form_${props.name}`}
           noValidate
         >
-          <h3 className="popup__heading">{props.title}</h3>
+          <h3 className="form__heading">{props.title}</h3>
           {props.children}
           <button
-            className={`popup__button popup__button_${props.name} button`}
+            className={`form__button form__button_${props.name} button`}
             type="submit"
           >
             {props.textButtonSubmit}
           </button>
-
         </form>
         <button
-            onClick={props.onClose}
-            className="popup__close button"
-            type="button"
-          ></button>
+          onClick={props.onClose}
+          className="popup__close button"
+          type="button"
+        ></button>
       </div>
     </div>
   );

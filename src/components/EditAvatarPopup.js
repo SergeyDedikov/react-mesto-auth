@@ -29,18 +29,18 @@ function EditAvatarPopup(props) {
       title={"Обновить аватар"}
       textButtonSubmit={props.isLoading ? "Сохранение..." : "Сохранить"}
     >
-      <fieldset className="popup__input-container">
-        <label className="popup__field">
+      <fieldset className="form__input-container">
+        <label className="form__field">
           <input
             ref={avatarRef}
             id="avatar"
-            className="popup__input popup__input_value_link"
+            className="form__input"
             type="url"
             name="avatar"
             placeholder="Ссылка на аватар"
             required
           />
-          <span id="avatar-error" className="popup__error"></span>
+          <span id="avatar-error" className="form__error"></span>
         </label>
       </fieldset>
     </PopupWithForm>
