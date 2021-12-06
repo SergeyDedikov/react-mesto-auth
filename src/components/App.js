@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import { CurentUserContext, defaultUser } from "../contexts/CurrentUserContext";
 
 import "../index.css";
@@ -17,17 +17,13 @@ import Login from "./Login";
 import Register from "./Register";
 
 function App() {
+  const history = useHistory();
   // -- Переменная состояния авторизации
-  const [loggedIn, setLoggedIn] = useState(true);
-  console.log(loggedIn);
-  useEffect(() => {
-    api.checkToken(localStorage.getItem("token")).then((res) => {
-      console.log(res);
-      setLoggedIn(true);
-    });
-  }, []);
+  const [loggedIn, setLoggedIn] = useState(false);
+
   // -- Переменная состояния профиля
   const [currentUser, setCurrentUser] = useState(defaultUser);
+  const [email, setEmail] = useState('');
 
   // -- Состояние карточек
   const [cards, setCards] = useState([]);
@@ -53,6 +49,21 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      // проверяем токен пользователя
+      api.checkToken(localStorage.getItem("token")).then((res) => {
+        if (res) {
+          // меняем переменные состояния
+          setLoggedIn(true);
+          setEmail(res.data.email);
+          // переходим на главную страницу
+          history.push("/");
+        }
+      });
+    }
   }, []);
 
   // -- Обновление профиля
@@ -176,7 +187,7 @@ function App() {
 
   return (
     <CurentUserContext.Provider value={currentUser}>
-      <Header />
+      <Header email={email} />
       <Switch>
         <ProtectedRoute
           exact

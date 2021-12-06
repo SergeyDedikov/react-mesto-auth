@@ -1,14 +1,38 @@
 import PageWithAuthForm from "./PageWithAuthForm";
 import api from "../utils/api";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Register() {
+  const [stateRegister, setStateRegister] = useState({
+    email: "",
+    message: "",
+  });
+  const history = useHistory();
+  console.log(stateRegister);
+
   function onRegister(data) {
-    api.register(data).then((res) => {
-      console.log(res);
-      // -- если ОК показать попап Хорошо
-      // -- иначе Плохо
-      // 400 - некорректно заполнено одно из полей
-    })
+    api
+      .register(data)
+      .then((res) => {
+        console.log(res.ok);
+        if (res.statusCode !== 400) {
+          // -- показать попап Хорошо
+          setStateRegister({
+            email: res.data.email,
+            message: "Вы успешно зарегистрировались!",
+          });
+          history.push("/sign-in");
+        } else {
+          // 400 - некорректно заполнено одно из полей
+          setStateRegister({
+            message: "Что-то пошло не так! Попробуйте ещё раз.",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
