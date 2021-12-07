@@ -6,9 +6,10 @@ function Login({ handleTokenCheck }) {
     api.login(data).then((res) => {
       localStorage.setItem("token", res.token);
       handleTokenCheck();
-      
       // 400 - не передано одно из полей
       // 401 - пользователь с email не найден
+    }).catch((err) => {
+      console.log(err);
     });
   }
 

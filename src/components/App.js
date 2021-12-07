@@ -53,7 +53,6 @@ function App() {
 
   // -- Проверяем токен пользователя
   function handleTokenCheck() {
-    console.log(localStorage.getItem("token"));
     if (localStorage.getItem("token")) {
       api.checkToken(localStorage.getItem("token")).then((res) => {
         if (res) {

@@ -19,7 +19,7 @@ function PageWithAuthForm(props) {
   }
 
   return (
-    <div className="authentication">
+    <section className="authentication">
       <form
         onSubmit={handleSubmit}
         name={`${props.name}`}
@@ -64,7 +64,7 @@ function PageWithAuthForm(props) {
         </button>
       </form>
       {props.children}
-    </div>
+    </section>
   );
 }
 
