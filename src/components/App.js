@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { CurentUserContext, defaultUser } from "../contexts/CurrentUserContext";
 
 import "../index.css";
@@ -23,7 +23,7 @@ function App() {
 
   // -- Переменная состояния профиля
   const [currentUser, setCurrentUser] = useState(defaultUser);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   // -- Состояние карточек
   const [cards, setCards] = useState([]);
@@ -51,9 +51,10 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
+  // -- Проверяем токен пользователя
+  function handleTokenCheck() {
+    console.log(localStorage.getItem("token"));
     if (localStorage.getItem("token")) {
-      // проверяем токен пользователя
       api.checkToken(localStorage.getItem("token")).then((res) => {
         if (res) {
           // меняем переменные состояния
@@ -64,6 +65,10 @@ function App() {
         }
       });
     }
+  }
+
+  useEffect(() => {
+    handleTokenCheck();
   }, []);
 
   // -- Обновление профиля
@@ -187,7 +192,7 @@ function App() {
 
   return (
     <CurentUserContext.Provider value={currentUser}>
-      <Header email={email} />
+      <Header email={email} setEmail={setEmail} />
       <Switch>
         <ProtectedRoute
           exact
@@ -206,7 +211,7 @@ function App() {
           <Register />
         </Route>
         <Route path="/sign-in">
-          <Login />
+          <Login handleTokenCheck={handleTokenCheck} />
         </Route>
 
         {/* <Route exact path="/">

@@ -15,7 +15,6 @@ function Register() {
     api
       .register(data)
       .then((res) => {
-        console.log(res.ok);
         if (res.statusCode !== 400) {
           // -- показать попап Хорошо
           setStateRegister({
