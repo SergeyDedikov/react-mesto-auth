@@ -15,6 +15,7 @@ import ConfirmationPopup from "./ConfirmationPopup";
 import ProtectedRoute from "./ProtectedRoute";
 import Login from "./Login";
 import Register from "./Register";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const history = useHistory();
@@ -35,6 +36,8 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isOk, setIsOk] = useState(null);
   // -- Переменные состояний отправки данных
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -163,6 +166,11 @@ function App() {
 
   // -- Функции попапов
 
+  function showInfoTooltip(set) {
+    setIsInfoTooltipOpen(true);
+    setIsOk(set);
+  }
+
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
     setIsSubmitted(false);
@@ -182,6 +190,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsConfirmationPopupOpen(false);
+    setIsInfoTooltipOpen(false);
     setSelectedCard(null);
   }
 
@@ -207,15 +216,14 @@ function App() {
           onCardDelete={handleCardDelete}
         />
         <Route path="/sign-up">
-          <Register />
+          <Register onInfoTooltip={showInfoTooltip} />
         </Route>
         <Route path="/sign-in">
-          <Login handleTokenCheck={handleTokenCheck} />
+          <Login
+            handleTokenCheck={handleTokenCheck}
+            onInfoTooltip={showInfoTooltip}
+          />
         </Route>
-
-        {/* <Route exact path="/">
-          {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
-        </Route> */}
       </Switch>
 
       <Footer />
@@ -243,6 +251,11 @@ function App() {
         isOpen={isConfirmationPopupOpen}
         onClose={closeAllPopups}
         isLoading={isLoading}
+      />
+      <InfoTooltip
+        isOk={isOk}
+        isOpen={isInfoTooltipOpen}
+        onClose={closeAllPopups}
       />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </CurentUserContext.Provider>

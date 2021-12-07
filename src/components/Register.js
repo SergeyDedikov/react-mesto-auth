@@ -1,9 +1,9 @@
-import PageWithAuthForm from "./PageWithAuthForm";
-import api from "../utils/api";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import PageWithAuthForm from "./PageWithAuthForm";
+import api from "../utils/api";
 
-function Register() {
+function Register({ onInfoTooltip }) {
   const [message, setMessage] = useState("");
   const history = useHistory();
 
@@ -14,9 +14,10 @@ function Register() {
         if (res.statusCode !== 400) {
           setMessage("Вы успешно зарегистрировались!");
           // -- показать попап Хорошо
+          onInfoTooltip(true);
           setTimeout(() => {
             history.push("/sign-in");
-          }, 3000);
+          }, 5000);
         } else {
           // 400 - некорректно заполнено одно из полей
           setMessage("Что-то пошло не так! Попробуйте ещё раз.");
@@ -24,6 +25,7 @@ function Register() {
       })
       .catch((err) => {
         console.log(err);
+        onInfoTooltip(false);
         // -- показать попап Плохо
       });
   }
