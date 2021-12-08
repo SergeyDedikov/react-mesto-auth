@@ -1,0 +1,6 @@
+.popup__container_type_infotooltip {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

@@ -7,7 +7,7 @@ function InfoTooltip(props) {
   // меняем текст в зависимости от статуса
   const message = props.isOk
     ? "Вы успешно зарегистрировались!"
-    : "Что-то пошло не так! Попробуйте ещё раз.";
+    : `${props.message}`;
 
   return (
     <div

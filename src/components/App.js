@@ -38,6 +38,10 @@ function App() {
   const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isOk, setIsOk] = useState(null);
+  const [message, setMessage] = useState(
+    "Что-то пошло не так! Попробуйте ещё раз."
+  );
+
   // -- Переменные состояний отправки данных
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,15 +61,26 @@ function App() {
   // -- Проверяем токен пользователя
   function handleTokenCheck() {
     if (localStorage.getItem("token")) {
-      api.checkToken(localStorage.getItem("token")).then((res) => {
-        if (res) {
-          // меняем переменные состояния
-          setLoggedIn(true);
-          setEmail(res.data.email);
-          // переходим на главную страницу
-          history.push("/");
-        }
-      });
+      api
+        .checkToken(localStorage.getItem("token"))
+        .then((res) => {
+          if (res) {
+            // меняем переменные состояния авторизации
+            setLoggedIn(true);
+            setEmail(res.data.email);
+            // переходим на главную страницу
+            history.push("/");
+          }
+        })
+        .catch((err) => {
+          // обработаем ошибки
+          if (err === "400") {
+            console.log("Токен не передан или передан не в том формате");
+          }
+          if (err === "401") {
+            console.log("Переданный токен некорректен");
+          }
+        });
     }
   }
 
@@ -171,6 +186,10 @@ function App() {
     setIsOk(set);
   }
 
+  function changeMessage(text) {
+    setMessage(text);
+  }
+
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
     setIsSubmitted(false);
@@ -216,12 +235,13 @@ function App() {
           onCardDelete={handleCardDelete}
         />
         <Route path="/sign-up">
-          <Register onInfoTooltip={showInfoTooltip} />
+          <Register onInfoTooltip={showInfoTooltip} message={changeMessage} />
         </Route>
         <Route path="/sign-in">
           <Login
             handleTokenCheck={handleTokenCheck}
             onInfoTooltip={showInfoTooltip}
+            message={changeMessage}
           />
         </Route>
       </Switch>
@@ -255,6 +275,7 @@ function App() {
       <InfoTooltip
         isOk={isOk}
         isOpen={isInfoTooltipOpen}
+        message={message}
         onClose={closeAllPopups}
       />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
