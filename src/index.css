@@ -2,12 +2,13 @@
 @import url(./vendor/fonts/fonts.css);
 @import url(./blocks/page/page.css);
 @import url(./blocks/button/button.css);
+@import url(./blocks/button/_link/button_link.css);
+@import url(./blocks/button/_link/_signout/button_link_signout.css);
 
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
-
-@import url(./blocks/nav/nav.css);
-@import url(./blocks/nav/__button/nav__button.css);
+@import url(./blocks/header/__user-email/header__user-email.css);
+@import url(./blocks/header/__nav/header__nav.css);
 
 @import url(./blocks/main/main.css);
 
@@ -48,9 +49,9 @@
 @import url(./blocks/form/__error/_visible/form__error_visible.css);
 @import url(./blocks/form/__button/form__button.css);
 @import url(./blocks/form/__button/_confirmation/form__button_confirmation.css);
+@import url(./blocks/form/__button/_theme/form__button_theme_dark.css);
 @import url(./blocks/form/__button/_authentication/form__button_authentication.css);
 @import url(./blocks/form/__button/_disabled/form__button_disabled.css);
-@import url(./blocks/form/__button/_theme/form__button_theme_dark.css);
 
 @import url(./blocks/cards/cards.css);
 @import url(./blocks/cards/__list/cards__list.css);
@@ -66,7 +67,7 @@
 @import url(./blocks/card/__button-remove/_hidden/card__button-remove_hidden.css);
 
 @import url(./blocks/authentication/authentication.css);
-@import url(./blocks/authentication/__question/authentication__question.css);
+@import url(./blocks/authentication/__text/authentication__text.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);

@@ -13,8 +13,8 @@ function Header({ email, setEmail }) {
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Логотип Место.Россия" />
-      <p>{email}</p>
-      <nav className="nav">
+      <p className="header__user-email">{email}</p>
+      <nav className="header__nav">
         <NavBar onSignOut={onSignOut} />
       </nav>
     </header>

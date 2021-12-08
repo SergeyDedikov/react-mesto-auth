@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import PageWithAuthForm from "./PageWithAuthForm";
 import api from "../utils/api";
 
@@ -33,7 +33,14 @@ function Register({ onInfoTooltip, message }) {
       title={"Регистрация"}
       textButtonSubmit={"Зарегистрироваться"}
     >
-      <p className="authentication__question">Уже зарегистрированы? Войти</p>
+      <p className="authentication__text">
+        Уже зарегистрированы?{" "}
+        <span>
+          <Link to="/sign-in" className="button button_link">
+            Войти
+          </Link>
+        </span>
+      </p>
     </PageWithAuthForm>
   );
 }
