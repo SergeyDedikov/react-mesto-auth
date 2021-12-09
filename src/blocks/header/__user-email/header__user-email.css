@@ -5,4 +5,12 @@
   line-height: 1.22;
   text-align: right;
   justify-self: right;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+@media screen and (max-width: 600px) {
+  .header__user-email {
+    font-size: 14px;
+  }
 }
