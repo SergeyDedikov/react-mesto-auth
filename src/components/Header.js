@@ -1,15 +1,8 @@
-import { useHistory } from "react-router-dom";
 import logo from "../images/logo-mesto.svg";
 import NavBar from "./NavBar";
 
-function Header({ email, setEmail }) {
-  const history = useHistory();
+function Header({ email, onSignOut }) {
 
-  function onSignOut() {
-    localStorage.removeItem("token");
-    history.push("/sign-in");
-    setEmail('');
-  }
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Логотип Место.Россия" />

@@ -2,8 +2,9 @@
 @import url(./vendor/fonts/fonts.css);
 @import url(./blocks/page/page.css);
 @import url(./blocks/button/button.css);
-@import url(./blocks/button/_link/button_link.css);
-@import url(./blocks/button/_link/_signout/button_link_signout.css);
+
+@import url(./blocks/link/link.css);
+@import url(./blocks/link/_signout/link_signout.css);
 
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);

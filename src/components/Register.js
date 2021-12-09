@@ -36,7 +36,7 @@ function Register({ onInfoTooltip, message }) {
       <p className="authentication__text">
         Уже зарегистрированы?{" "}
         <span>
-          <Link to="/sign-in" className="button button_link">
+          <Link to="/sign-in" className="button link">
             Войти
           </Link>
         </span>

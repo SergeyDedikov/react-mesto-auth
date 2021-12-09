@@ -7,7 +7,7 @@ function NavBar({ onSignOut }) {
     return (
       <button
         onClick={onSignOut}
-        className="button button_link button_link_signout"
+        className="button link link_signout"
         type="button"
       >
         Выйти
@@ -15,13 +15,13 @@ function NavBar({ onSignOut }) {
     );
   } else if (pathname === "/sign-up") {
     return (
-      <Link to="/sign-in" className="button button_link">
+      <Link to="/sign-in" className="button link">
         Войти
       </Link>
     );
   } else if (pathname === "/sign-in") {
     return (
-      <Link to="/sign-up" className="button button_link">
+      <Link to="/sign-up" className="button link">
         Регистрация
       </Link>
     );

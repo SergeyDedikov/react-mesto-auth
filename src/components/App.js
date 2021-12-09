@@ -19,6 +19,7 @@ import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const history = useHistory();
+  
   // -- Переменная состояния авторизации
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -86,7 +87,17 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // -- Выход из системы
+
+  function onSignOut() {
+    localStorage.removeItem("token");
+    history.push("/sign-in");
+    setEmail("");
+    setLoggedIn(false);
+  }
 
   // -- Обновление профиля
 
@@ -219,7 +230,7 @@ function App() {
 
   return (
     <CurentUserContext.Provider value={currentUser}>
-      <Header email={email} setEmail={setEmail} />
+      <Header email={email} onSignOut={onSignOut} />
       <Switch>
         <ProtectedRoute
           exact
