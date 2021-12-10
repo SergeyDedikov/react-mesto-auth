@@ -19,7 +19,7 @@ import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const history = useHistory();
-  
+
   // -- Переменная состояния авторизации
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -230,7 +230,7 @@ function App() {
 
   return (
     <CurentUserContext.Provider value={currentUser}>
-      <Header email={email} onSignOut={onSignOut} />
+      <Header email={email} onSignOut={onSignOut} loggedIn={loggedIn} />
       <Switch>
         <ProtectedRoute
           exact

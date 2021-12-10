@@ -1,10 +1,33 @@
+import { useEffect, useState } from "react";
 import logo from "../images/logo-mesto.svg";
 import ButtonsNav from "./ButtonsNav";
 
-function Header({ email, onSignOut }) {
+export default function Header({ loggedIn, email, onSignOut }) {
+  // -- Управляем отображением верхней части хидера
+  const [isVisibleMenu, setIsVisibleMenu] = useState(false);
+
+  const containerMobilVisible = `header__container header__container_mobil ${
+    loggedIn && isVisibleMenu && "header__container_mobil_visible"
+  }`;
+
+  useEffect(() => {
+    if (!loggedIn) {
+      // если выйдем из системы с раскрытым меню, то закроем его
+      setIsVisibleMenu(false);
+    }
+  }, [loggedIn]);
+
+  function changeVisibleMenu(e) {
+    if (isVisibleMenu) {
+      setIsVisibleMenu(false);
+    } else {
+      setIsVisibleMenu(true);
+    }
+  }
+
   return (
     <header className="header">
-      <div className="header__container header__container_mobil">
+      <div className={containerMobilVisible}>
         <p className="header__user-email header__user-email_mobil">{email}</p>
         <button
           onClick={onSignOut}
@@ -18,11 +41,13 @@ function Header({ email, onSignOut }) {
         <img className="header__logo" src={logo} alt="Логотип Место.Россия" />
         <p className="header__user-email">{email}</p>
         <nav className="header__nav">
-          <ButtonsNav onSignOut={onSignOut} />
+          <ButtonsNav
+            onSignOut={onSignOut}
+            changeVisibleMenu={changeVisibleMenu}
+            isVisibleMenu={isVisibleMenu}
+          />
         </nav>
       </div>
     </header>
   );
 }
-
-export default Header;
