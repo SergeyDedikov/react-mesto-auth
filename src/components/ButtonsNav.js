@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 
-function NavBar({ onSignOut }) {
+function ButtonsNav({ onSignOut }) {
   const pathname = useLocation().pathname;
 
   if (pathname === "/") {
     return (
       <button
         onClick={onSignOut}
-        className="button link link_signout"
+        className="button link signout signout_place_nav"
         type="button"
       >
         Выйти
@@ -30,4 +30,4 @@ function NavBar({ onSignOut }) {
   }
 }
 
-export default NavBar;
+export default ButtonsNav;

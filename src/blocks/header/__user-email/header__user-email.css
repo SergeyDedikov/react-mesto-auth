@@ -11,6 +11,6 @@
 
 @media screen and (max-width: 600px) {
   .header__user-email {
-    font-size: 14px;
+    display: none;
   }
 }

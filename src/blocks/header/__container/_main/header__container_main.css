@@ -1,0 +1,5 @@
+.header__container_main {
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  align-items: center;
+}

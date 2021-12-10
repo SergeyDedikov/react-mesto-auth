@@ -5,3 +5,9 @@
   background: center no-repeat;
   background-size: 120px 120px;
 }
+
+@media screen and (max-width: 600px) {
+  .popup__container {
+    margin-bottom: 40px;
+  }
+}

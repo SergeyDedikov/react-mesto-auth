@@ -1,12 +1,7 @@
 .header {
   position: relative;
-  display: grid;
-  grid-template-columns: min-content auto min-content;
-  column-gap: 24px;
-  align-items: center;
   width: calc(100% - 2 * 200px);
   margin: 0 auto;
-  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 1100px) {
