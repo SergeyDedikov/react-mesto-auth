@@ -225,7 +225,9 @@ function App() {
     setIsConfirmationPopupOpen(false);
     setIsInfoTooltipOpen(false);
     setSelectedCard(null);
-    setMessage("Что-то пошло не так! Попробуйте ещё раз.");
+    setTimeout(() => {
+      setMessage("Что-то пошло не так! Попробуйте ещё раз.");
+    }, 1000);
   }
 
   function handleCardClick(card) {
