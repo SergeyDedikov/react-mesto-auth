@@ -87,7 +87,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // -- Выход из системы
@@ -193,7 +193,9 @@ function App() {
   // -- Функции попапов
 
   function showInfoTooltip(set) {
+    // -- отобразим инфо-попап
     setIsInfoTooltipOpen(true);
+    // -- выберем его тип
     setIsOk(set);
   }
 
@@ -216,12 +218,14 @@ function App() {
   }
 
   function closeAllPopups() {
+    // -- установим значения по умолчанию
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsConfirmationPopupOpen(false);
     setIsInfoTooltipOpen(false);
     setSelectedCard(null);
+    setMessage("Что-то пошло не так! Попробуйте ещё раз.");
   }
 
   function handleCardClick(card) {
@@ -230,7 +234,11 @@ function App() {
 
   return (
     <CurentUserContext.Provider value={currentUser}>
-      <Header currentUserEmail={currentUserEmail} onSignOut={onSignOut} loggedIn={loggedIn} />
+      <Header
+        currentUserEmail={currentUserEmail}
+        onSignOut={onSignOut}
+        loggedIn={loggedIn}
+      />
       <Switch>
         <ProtectedRoute
           exact
