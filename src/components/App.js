@@ -25,7 +25,7 @@ function App() {
 
   // -- Переменная состояния профиля
   const [currentUser, setCurrentUser] = useState(defaultUser);
-  const [email, setEmail] = useState("");
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
 
   // -- Состояние карточек
   const [cards, setCards] = useState([]);
@@ -68,7 +68,7 @@ function App() {
           if (res) {
             // меняем переменные состояния авторизации
             setLoggedIn(true);
-            setEmail(res.data.email);
+            setCurrentUserEmail(res.data.email);
             // переходим на главную страницу
             history.push("/");
           }
@@ -95,7 +95,7 @@ function App() {
   function onSignOut() {
     localStorage.removeItem("token");
     history.push("/sign-in");
-    setEmail("");
+    setCurrentUserEmail("");
     setLoggedIn(false);
   }
 
@@ -230,7 +230,7 @@ function App() {
 
   return (
     <CurentUserContext.Provider value={currentUser}>
-      <Header email={email} onSignOut={onSignOut} loggedIn={loggedIn} />
+      <Header currentUserEmail={currentUserEmail} onSignOut={onSignOut} loggedIn={loggedIn} />
       <Switch>
         <ProtectedRoute
           exact

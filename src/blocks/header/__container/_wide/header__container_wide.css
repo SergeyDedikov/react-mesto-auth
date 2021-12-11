@@ -1,4 +1,4 @@
-.header__container_main {
+.header__container_wide {
   display: grid;
   grid-template-columns: min-content auto min-content;
   align-items: center;

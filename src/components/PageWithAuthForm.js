@@ -28,7 +28,7 @@ function PageWithAuthForm(props) {
         <h3 className={`form__heading form__heading_type_authentication`}>
           {props.title}
         </h3>
-        <fieldset className="form__input-container">
+        <fieldset className="form__input-container form__input-container_authentication">
           <label className="form__field">
             <input
               value={inputValues.email}
