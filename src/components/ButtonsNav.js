@@ -19,6 +19,7 @@ export default function ButtonsNav({
         </button>
         <button
           onClick={changeVisibleMenu}
+          // -- меняем вид кнопки
           className={`button header__menu ${
             isVisibleMenu && "header__menu_close"
           }`}

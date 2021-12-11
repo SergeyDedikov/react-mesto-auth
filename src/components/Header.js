@@ -17,12 +17,8 @@ export default function Header({ loggedIn, email, onSignOut }) {
     }
   }, [loggedIn]);
 
-  function changeVisibleMenu(e) {
-    if (isVisibleMenu) {
-      setIsVisibleMenu(false);
-    } else {
-      setIsVisibleMenu(true);
-    }
+  function changeVisibleMenu() {
+    setIsVisibleMenu(!isVisibleMenu);
   }
 
   return (
