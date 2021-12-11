@@ -56,6 +56,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        showInfoTooltip(false);
       });
   }, []);
 
@@ -74,12 +75,13 @@ function App() {
           }
         })
         .catch((err) => {
+          showInfoTooltip(false);
           // обработаем ошибки
           if (err === "400") {
-            console.log("Токен не передан или передан не в том формате");
+            setMessage("Токен не передан или передан не в том формате");
           }
           if (err === "401") {
-            console.log("Переданный токен некорректен");
+            setMessage("Переданный токен некорректен");
           }
         });
     }
