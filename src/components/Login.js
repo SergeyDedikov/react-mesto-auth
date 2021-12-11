@@ -1,7 +1,7 @@
 import PageWithAuthForm from "./PageWithAuthForm";
 import api from "../utils/api";
 
-function Login({ handleTokenCheck, onInfoTooltip, message }) {
+function Login({ handleTokenCheck, showInfoTooltip, changeMessage }) {
   function onLogin(data) {
     api
       .login(data)
@@ -10,12 +10,12 @@ function Login({ handleTokenCheck, onInfoTooltip, message }) {
         handleTokenCheck();
       })
       .catch((err) => {
-        onInfoTooltip(false);
+        showInfoTooltip(false);
         if (err === "400") {
-          message("Не передано одно из полей. Попробуйте ещё раз.");
+          changeMessage("Не передано одно из полей. Попробуйте ещё раз.");
         }
         if (err === "401") {
-          message("Пользователь с email не найден. Попробуйте ещё раз.");
+          changeMessage("Пользователь с email не найден. Попробуйте ещё раз.");
         }
       });
   }

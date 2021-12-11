@@ -258,13 +258,16 @@ function App() {
           onCardDelete={handleCardDelete}
         />
         <Route path="/sign-up">
-          <Register onInfoTooltip={showInfoTooltip} message={changeMessage} />
+          <Register
+            showInfoTooltip={showInfoTooltip}
+            changeMessage={changeMessage}
+          />
         </Route>
         <Route path="/sign-in">
           <Login
             handleTokenCheck={handleTokenCheck}
-            onInfoTooltip={showInfoTooltip}
-            message={changeMessage}
+            showInfoTooltip={showInfoTooltip}
+            changeMessage={changeMessage}
           />
         </Route>
       </Switch>

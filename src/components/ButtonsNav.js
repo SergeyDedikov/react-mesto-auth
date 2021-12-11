@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function ButtonsNav({
   onSignOut,
-  changeVisibleMenu,
+  onChangeVisibleMenu,
   isVisibleMenu,
 }) {
   const pathname = useLocation().pathname;
@@ -18,7 +18,7 @@ export default function ButtonsNav({
           Выйти
         </button>
         <button
-          onClick={changeVisibleMenu}
+          onClick={onChangeVisibleMenu}
           // -- меняем вид кнопки
           className={`button header__menu ${
             isVisibleMenu && "header__menu_close"

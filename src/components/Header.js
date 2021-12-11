@@ -17,7 +17,7 @@ export default function Header({ loggedIn, currentUserEmail, onSignOut }) {
     }
   }, [loggedIn]);
 
-  function changeVisibleMenu() {
+  function onChangeVisibleMenu() {
     setIsVisibleMenu(!isVisibleMenu);
   }
 
@@ -39,7 +39,7 @@ export default function Header({ loggedIn, currentUserEmail, onSignOut }) {
         <nav className="header__nav">
           <ButtonsNav
             onSignOut={onSignOut}
-            changeVisibleMenu={changeVisibleMenu}
+            onChangeVisibleMenu={onChangeVisibleMenu}
             isVisibleMenu={isVisibleMenu}
           />
         </nav>

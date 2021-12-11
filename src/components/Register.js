@@ -2,7 +2,7 @@ import { useHistory, Link } from "react-router-dom";
 import PageWithAuthForm from "./PageWithAuthForm";
 import api from "../utils/api";
 
-function Register({ onInfoTooltip, message }) {
+function Register({ showInfoTooltip, changeMessage }) {
   const history = useHistory();
 
   function onRegister(data) {
@@ -10,18 +10,18 @@ function Register({ onInfoTooltip, message }) {
       .register(data)
       .then((res) => {
         if (res.statusCode !== 400) {
-          message("Вы успешно зарегистрировались!");
+          changeMessage("Вы успешно зарегистрировались!");
           // -- показать попап Хорошо
-          onInfoTooltip(true);
+          showInfoTooltip(true);
           setTimeout(() => {
             history.push("/sign-in");
           }, 2000);
         }
       })
       .catch((err) => {
-        onInfoTooltip(false);
+        showInfoTooltip(false);
         if (err === "400") {
-          message("Некорректно заполнено одно из полей. Попробуйте ещё раз.");
+          changeMessage("Некорректно заполнено одно из полей. Попробуйте ещё раз.");
         }
       });
   }
