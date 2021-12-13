@@ -1,4 +1,4 @@
-# Практическая работа №11: Место
+# Практическая работа №12: Место
 
 - Описание
 - Особенности
@@ -7,96 +7,102 @@
 
 **Описание**
 
-Практическая работа №11 курса "Веб-разработчик" Яндекс.Практикума — продолжаем изучать **React**.
+Практическая работа №12 курса "Веб-разработчик" Яндекс.Практикума — продолжаем изучать **React**. Расширяется функциональность предыдущей практической работы.
 
 ---
 
 **Особенности**
 
-Применили в проекте контекст — все данные о пользователе, полученные от сервера, сохраняем в одну переменную **currentUser**:
+Подключили **React Router** для возможности навигации по проекту.
 
 ```javascript
-function App() {
-  // -- Переменная состояния профиля
-  const [currentUser, setCurrentUser] = useState(defaultUser);
-  ...
-  // -- Запрос данных с сервера
-  useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getCardList()])
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData);
-        setCards(cardsData);
+<BrowserRouter>
+  <App />
+</BrowserRouter>
+```
+
+Теперь можно переходить по нужному пути:
+
+```javascript
+<Route path="/sign-up">
+  <Register />
+</Route>
+<Route path="/sign-in">
+  <Login />
+</Route>
+```
+
+Используются соответствующие ссылки:
+
+```javascript
+<Link to="/sign-in">
+  Войти
+</Link>
+<Link to="/sign-up">
+  Регистрация
+</Link>
+```
+
+Функциональность проекта доступна только зарегистрированным и авторизованным пользователям — проверяется токен, который сохраняется в локальном хранилище:
+
+```javascript
+function onLogin(data) {
+  api
+    .login(data)
+    .then((res) => {
+      localStorage.setItem("token", res.token);
+      handleTokenCheck();
+    })
+...
+api
+  .checkToken(localStorage.getItem("token"))
+  .then((res) => {
+    if (res) {
+      // меняем переменные состояния авторизации
+      setLoggedIn(true);
+      setCurrentUserEmail(res.data.email);
+      // переходим на главную страницу
+      history.push("/");
+    }
+```
+Для этого применяется защищённый роут, использующий переменную авторизации **loggedIn**:
+
+```javascript
+const ProtectedRoute = ({ component: Component, ...props }) => {
+  return (
+    <Route path={props.path}>
+      {() =>
+        props.loggedIn ? <Component {...props} /> : <Redirect to="/sign-in" />
+      }
+    </Route>
+  );
+};
+```
+Проработали UI: при успешной регистрации отображается информационный попап о том, что всё хорошо, при неудачной — тоже отображается, но сообщает о неудаче.
+
+```javascript
+function onRegister(data) {
+    api
+      .register(data)
+      .then((res) => {
+        if (res.statusCode !== 400) {
+          changeMessage("Вы успешно зарегистрировались!");
+          // -- показать попап Хорошо
+          showInfoTooltip(true);
+          setTimeout(() => {
+            history.push("/sign-in");
+          }, 2000);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        showInfoTooltip(false);
+        if (err === "400") {
+          changeMessage("Некорректно заполнено одно из полей. Попробуйте ещё раз.");
+        }
       });
-  }, []);
-```
-
-Подписываемся на контекст и используем его в других компонентах:
-
-```javascript
-return (
-    <CurentUserContext.Provider value={currentUser}>
-      <Header />
-      <Main />
-      ...)
-
-function Main(props) {
-  // -- Подписываемся на контекст
-  const currentUser = useContext(CurentUserContext);
-...
-  return (
-    <main className="main">
-      <section className="profile" aria-label="Профиль пользователя">
-        <div className="profile__avatar-box">
-          <img
-            className="profile__avatar"
-            src={currentUser.avatar}
-            alt="Аватар пользователя"
-          />
-...
-function Card({ card, onCardClick, onCardLike, onCardDelete }) {
-  const currentUser = useContext(CurentUserContext);
-
-  // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = card.owner._id === currentUser._id;
-```
-
-Реализовали редактирование и отправку всех форм:
-
-```javascript
-const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    // Получаем данные пользователя для полей формы
-    if (currentUser && props.isOpen) {
-      setName(currentUser.name);
-      setDescription(currentUser.about);
-    }
-  }, [currentUser, props.isOpen]);
-
-  function handleChangeName(e) {
-    setName(e.target.value);
   }
-...
- useEffect(() => {
-    if (props.isSubmitted) {
-      avatarRef.current.value = "";
-    }
-  }, [props.isSubmitted]);
-
-  return (
-    <PopupWithForm
-      isOpen={props.isOpen}
-      onClose={props.onClose}
-      onSubmit={handleSubmit}
-      name={"edit-avatar"}
-      title={"Обновить аватар"}
-      textButtonSubmit={props.isLoading ? "Сохранение..." : "Сохранить"}
-    >
 ```
+
+Добавлено адаптивное меню для мобильных экранов.
 
 ---
-Дальнейше расширение функционала данного проекта — в следующей практической работе.
