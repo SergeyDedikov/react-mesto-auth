@@ -5,7 +5,7 @@ export default function ButtonsNav({
   onChangeVisibleMenu,
   isVisibleMenu,
 }) {
-  const pathname = useLocation().pathname;
+  const { pathname } = useLocation();
 
   if (pathname === "/") {
     return (
@@ -20,8 +20,8 @@ export default function ButtonsNav({
         <button
           onClick={onChangeVisibleMenu}
           // -- меняем вид кнопки
-          className={`button header__menu ${
-            isVisibleMenu && "header__menu_close"
+          className={`button header__burger-menu ${
+            isVisibleMenu && "header__burger-menu_close"
           }`}
           type="button"
         ></button>

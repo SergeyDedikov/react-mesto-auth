@@ -6,8 +6,8 @@ export default function Header({ loggedIn, currentUserEmail, onSignOut }) {
   // -- Управляем отображением верхней части хидера
   const [isVisibleMenu, setIsVisibleMenu] = useState(false);
 
-  const containerMobilVisible = `header__container header__container_mobil ${
-    loggedIn && isVisibleMenu && "header__container_mobil_visible"
+  const containerMobilVisible = `header__container-mobil ${
+    loggedIn && isVisibleMenu && "header__container-mobil_visible"
   }`;
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Header({ loggedIn, currentUserEmail, onSignOut }) {
           Выйти
         </button>
       </div>
-      <div className="header__container header__container_wide">
+      <div className="header__container-general">
         <img className="header__logo" src={logo} alt="Логотип Место.Россия" />
         <p className="header__user-email">{currentUserEmail}</p>
         <nav className="header__nav">
