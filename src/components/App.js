@@ -4,6 +4,7 @@ import { CurentUserContext, defaultUser } from "../contexts/CurrentUserContext";
 
 import "../index.css";
 import api from "../utils/api";
+import auth from "../utils/auth";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -63,7 +64,7 @@ function App() {
   // -- Проверяем токен пользователя
   function handleTokenCheck() {
     if (localStorage.getItem("token")) {
-      api
+      auth
         .checkToken(localStorage.getItem("token"))
         .then((res) => {
           if (res) {

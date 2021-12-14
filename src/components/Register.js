@@ -1,12 +1,12 @@
 import { useHistory, Link } from "react-router-dom";
 import PageWithAuthForm from "./PageWithAuthForm";
-import api from "../utils/api";
+import auth from "../utils/auth";
 
 function Register({ showInfoTooltip, changeMessage }) {
   const history = useHistory();
 
   function onRegister(data) {
-    api
+    auth
       .register(data)
       .then((res) => {
         if (res.statusCode !== 400) {

@@ -1,9 +1,9 @@
 import PageWithAuthForm from "./PageWithAuthForm";
-import api from "../utils/api";
+import auth from "../utils/auth";
 
 function Login({ handleTokenCheck, showInfoTooltip, changeMessage }) {
   function onLogin(data) {
-    api
+    auth
       .login(data)
       .then((res) => {
         localStorage.setItem("token", res.token);
