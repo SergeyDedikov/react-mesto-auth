@@ -23,10 +23,9 @@ function AddPlacePopup(props) {
   useEffect(() => {
     // Очищаем поля ввода после отправки
     if (props.isSubmitted) {
-      inputValues.place = "";
-      inputValues.link = "";
+      setInputValues({ place: "", link: "" })
     }
-  }, [props.isSubmitted, inputValues]);
+  }, [props.isSubmitted]);
 
   return (
     <PopupWithForm
