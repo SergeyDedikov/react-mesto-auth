@@ -93,8 +93,26 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // -- Выход из системы
+  // -- Вход в систему
+  function onLogin(data) {
+    auth
+      .login(data)
+      .then((res) => {
+        localStorage.setItem("token", res.token);
+        handleTokenCheck();
+      })
+      .catch((err) => {
+        showInfoTooltip(false);
+        if (err === "400") {
+          changeMessage("Не передано одно из полей. Попробуйте ещё раз.");
+        }
+        if (err === "401") {
+          changeMessage("Пользователь с email не найден. Попробуйте ещё раз.");
+        }
+      });
+  }
 
+  // -- Выход из системы
   function onSignOut() {
     localStorage.removeItem("token");
     history.push("/sign-in");
@@ -265,11 +283,7 @@ function App() {
           />
         </Route>
         <Route path="/sign-in">
-          <Login
-            handleTokenCheck={handleTokenCheck}
-            showInfoTooltip={showInfoTooltip}
-            changeMessage={changeMessage}
-          />
+          <Login onLogin={onLogin} />
         </Route>
       </Switch>
 
