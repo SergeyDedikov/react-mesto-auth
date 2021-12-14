@@ -1,31 +1,7 @@
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PageWithAuthForm from "./PageWithAuthForm";
-import auth from "../utils/auth";
 
-function Register({ showInfoTooltip, changeMessage }) {
-  const history = useHistory();
-
-  function onRegister(data) {
-    auth
-      .register(data)
-      .then((res) => {
-        if (res.statusCode !== 400) {
-          changeMessage("Вы успешно зарегистрировались!");
-          // -- показать попап Хорошо
-          showInfoTooltip(true);
-          setTimeout(() => {
-            history.push("/sign-in");
-          }, 2000);
-        }
-      })
-      .catch((err) => {
-        showInfoTooltip(false);
-        if (err === "400") {
-          changeMessage("Некорректно заполнено одно из полей. Попробуйте ещё раз.");
-        }
-      });
-  }
-
+function Register({ onRegister }) {
   return (
     <PageWithAuthForm
       onSubmit={onRegister}

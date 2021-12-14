@@ -93,6 +93,28 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // -- Регистрация пользователя
+  function onRegister(data) {
+    auth
+      .register(data)
+      .then((res) => {
+        if (res.statusCode !== 400) {
+          changeMessage("Вы успешно зарегистрировались!");
+          // -- показать попап Хорошо
+          showInfoTooltip(true);
+          setTimeout(() => {
+            history.push("/sign-in");
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        showInfoTooltip(false);
+        if (err === "400") {
+          changeMessage("Некорректно заполнено одно из полей. Попробуйте ещё раз.");
+        }
+      });
+  }
+
   // -- Вход в систему
   function onLogin(data) {
     auth
@@ -277,10 +299,7 @@ function App() {
           onCardDelete={handleCardDelete}
         />
         <Route path="/sign-up">
-          <Register
-            showInfoTooltip={showInfoTooltip}
-            changeMessage={changeMessage}
-          />
+          <Register onRegister={onRegister} />
         </Route>
         <Route path="/sign-in">
           <Login onLogin={onLogin} />
