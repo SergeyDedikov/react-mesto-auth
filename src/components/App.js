@@ -99,7 +99,7 @@ function App() {
       .register(data)
       .then((res) => {
         if (res.statusCode !== 400) {
-          changeMessage("Вы успешно зарегистрировались!");
+          setMessage("Вы успешно зарегистрировались!");
           // -- показать попап Хорошо
           showInfoTooltip(true);
           setTimeout(() => {
@@ -110,7 +110,7 @@ function App() {
       .catch((err) => {
         showInfoTooltip(false);
         if (err === "400") {
-          changeMessage("Некорректно заполнено одно из полей. Попробуйте ещё раз.");
+          setMessage("Некорректно заполнено одно из полей. Попробуйте ещё раз.");
         }
       });
   }
@@ -126,10 +126,10 @@ function App() {
       .catch((err) => {
         showInfoTooltip(false);
         if (err === "400") {
-          changeMessage("Не передано одно из полей. Попробуйте ещё раз.");
+          setMessage("Не передано одно из полей. Попробуйте ещё раз.");
         }
         if (err === "401") {
-          changeMessage("Пользователь с email не найден. Попробуйте ещё раз.");
+          setMessage("Пользователь с email не найден. Попробуйте ещё раз.");
         }
       });
   }
@@ -240,10 +240,6 @@ function App() {
     setIsInfoTooltipOpen(true);
     // -- выберем его тип
     setIsOk(set);
-  }
-
-  function changeMessage(text) {
-    setMessage(text);
   }
 
   function handleEditAvatarClick() {
