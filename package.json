@@ -1,6 +1,6 @@
 {
-  "name": "mesto-react",
-  "version": "0.1.0",
+  "name": "react-mesto-auth",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
@@ -39,5 +39,20 @@
   },
   "devDependencies": {
     "eslint-plugin-react-hooks": "^4.3.0"
-  }
+  },
+  "description": "- Описание\r - Особенности",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergeyDedikov/react-mesto-auth.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "SergeyDedikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergeyDedikov/react-mesto-auth/issues"
+  },
+  "homepage": "https://sergeydedikov.github.io/react-mesto-auth"
 }
