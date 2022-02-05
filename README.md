@@ -106,3 +106,8 @@ function onRegister(data) {
 Добавлено адаптивное меню для мобильных экранов.
 
 ---
+
+**Ссылка на работу**
+
+Посмотреть реализацию проекта **"МестоReact"** можно [по ссылке](https://sergeydedikov.github.io/react-mesto-auth/index.html)
+
