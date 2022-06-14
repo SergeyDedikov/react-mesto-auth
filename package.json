@@ -1,6 +1,5 @@
 {
   "name": "mesto-react",
-  "homepage": "https://sergeydedikov.github.io/react-mesto-auth",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://sergeydedikov.github.io/react-mesto-auth",
@@ -16,8 +15,6 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
